@@ -1,0 +1,63 @@
+body {
+	margin: 0;
+	padding: 0;
+	background-color: grey;
+}
+
+.app {
+	height: 100vh;
+	display: flex;
+	flex-direction: column;
+	justify-content: center;
+	align-items: center;
+}
+
+.nav {
+	width: 40vw;
+	margin: 0 auto;
+	display: flex;
+	justify-content: space-around;
+}
+
+button {
+	background-color: green;
+	color: #fff;
+	padding: 1vh 1vw;
+	font-size: 3vh;
+	cursor: pointer;
+	border: none;
+	border-radius: 2vh;
+}
+
+button:hover {
+	opacity: 0.4;
+}
+
+.container {
+	margin: 6vh auto;
+	min-height: 15vh;
+	width: 40vw;
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	background-color: #379b3c;
+}
+
+.stopwatch {
+	font-size: 7vh;
+	color: #fff;
+	letter-spacing: 1vw;
+}
+
+.results {
+	margin: 0;
+	padding: 0;
+}
+
+li {
+	margin: 2vh 0;
+	color: #fff;
+	font-size: 4vh;
+	text-align: center;
+	list-style-type: none;
+}
