@@ -140,7 +140,7 @@ var Stopwatch = function (_React$Component) {
                     return _this3.results();
                 } }, 'Save'), React.createElement('button', { onClick: function onClick() {
                     return _this3.deleteList();
-                } }, 'Delete')), React.createElement('div', { className: 'container' }, React.createElement('div', { id: 'stopwatch', className: 'stopwatch' }, this.format())), React.createElement('ul', { id: 'results', className: 'results' }));
+                } }, 'Delete')), React.createElement('div', { id: 'container', className: 'container' }, React.createElement('div', { id: 'stopwatch', className: 'stopwatch' }, this.format())), React.createElement('ul', { id: 'results', className: 'results' }));
         }
     }]);
 
