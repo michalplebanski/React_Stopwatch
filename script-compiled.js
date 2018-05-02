@@ -10,8 +10,6 @@ function _possibleConstructorReturn(self, call) { if (!self) { throw new Referen
 
 function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
 
-var timeTable = [];
-
 var Stopwatch = function (_React$Component) {
     _inherits(Stopwatch, _React$Component);
 
@@ -21,6 +19,7 @@ var Stopwatch = function (_React$Component) {
         var _this = _possibleConstructorReturn(this, (Stopwatch.__proto__ || Object.getPrototypeOf(Stopwatch)).call(this, display));
 
         _this.state = {
+            timeTable: [],
             running: false,
             times: {
                 minutes: 0,
@@ -102,25 +101,19 @@ var Stopwatch = function (_React$Component) {
             clearInterval(this.watch);
         }
     }, {
-        key: 'get',
-        value: function get() {
-            timeTable = [].concat(_toConsumableArray(timeTable), [this.format(this.times)]);
-        }
-    }, {
         key: 'deleteList',
         value: function deleteList() {
-            timeTable = [];
+            this.state.timeTable = [];
             document.getElementById('results').innerHTML = '';
         }
     }, {
         key: 'results',
         value: function results() {
-            var pos = timeTable.length - 1;
-            this.val = timeTable;
-            var addTime = timeTable[pos];
+            this.state.timeTable = [].concat(_toConsumableArray(this.state.timeTable), [this.format(this.times)]);
+            var pos = this.state.timeTable.length - 1;
             var res = document.getElementById('results');
             var list = document.createElement('li');
-            list.innerText = addTime;
+            list.innerText = this.state.timeTable[pos];
             res.appendChild(list);
         }
     }, {
@@ -144,7 +137,7 @@ var Stopwatch = function (_React$Component) {
                 } }, 'Stop'), React.createElement('button', { onClick: function onClick() {
                     return _this3.reset();
                 } }, 'Reset'), React.createElement('button', { onClick: function onClick() {
-                    _this3.get(), _this3.results();
+                    return _this3.results();
                 } }, 'Save'), React.createElement('button', { onClick: function onClick() {
                     return _this3.deleteList();
                 } }, 'Delete')), React.createElement('div', { className: 'container' }, React.createElement('div', { id: 'stopwatch', className: 'stopwatch' }, this.format())), React.createElement('ul', { id: 'results', className: 'results' }));

@@ -1,10 +1,10 @@
-let timeTable = [];
-
 class Stopwatch extends React.Component {
+
 	
     constructor(display) {
         super(display);
         this.state = {
+            timeTable: [],
             running: false,
             times: {
                 minutes: 0,
@@ -74,22 +74,17 @@ class Stopwatch extends React.Component {
         clearInterval(this.watch);
     }
 
-    get() {
-        timeTable = [...timeTable, this.format(this.times)];
-    }
-
     deleteList() {
-        timeTable = [];
+        this.state.timeTable = [];
         document.getElementById('results').innerHTML = '';
     }
 
     results() {
-        let pos = timeTable.length - 1;
-        this.val = timeTable;
-        let addTime = timeTable[pos]
+        this.state.timeTable = [...this.state.timeTable, this.format(this.times)];
+        const pos = this.state.timeTable.length - 1;
         const res = document.getElementById('results');
         const list = document.createElement('li');
-        list.innerText = addTime;
+        list.innerText = this.state.timeTable[pos];
         res.appendChild(list);
     }
 
@@ -107,7 +102,7 @@ class Stopwatch extends React.Component {
       			React.createElement('button', {onClick: () => this.start()}, 'Start'),
       			React.createElement('button', {onClick: () => this.stop()}, 'Stop'),
       			React.createElement('button', {onClick: () => this.reset()}, 'Reset'),
-      			React.createElement('button', {onClick: () => {this.get(), this.results()}}, 'Save'),
+      			React.createElement('button', {onClick: () => this.results()}, 'Save'),
       			React.createElement('button', {onClick: () => this.deleteList()}, 'Delete')
     		),
     		React.createElement('div', {className: 'container'},
