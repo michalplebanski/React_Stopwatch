@@ -109,11 +109,12 @@ var Stopwatch = function (_React$Component) {
     }, {
         key: 'results',
         value: function results() {
-            this.state.timeTable = [].concat(_toConsumableArray(this.state.timeTable), [this.format(this.times)]);
+            var time = this.format(this.times);
+            this.state.timeTable = [].concat(_toConsumableArray(this.state.timeTable), [time]);
             var pos = this.state.timeTable.length - 1;
             var res = document.getElementById('results');
             var list = document.createElement('li');
-            list.innerText = this.state.timeTable[pos];
+            list.innerText = time;
             res.appendChild(list);
         }
     }, {

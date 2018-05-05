@@ -79,11 +79,12 @@ class Stopwatch extends React.Component {
     }
 
     results() {
-        this.state.timeTable = [...this.state.timeTable, this.format(this.times)];
+        const time = this.format(this.times);
+        this.state.timeTable = [...this.state.timeTable, time];
         const pos = this.state.timeTable.length - 1;
         const res = document.getElementById('results');
         const list = document.createElement('li');
-        list.innerText = this.state.timeTable[pos];
+        list.innerText = time;
         res.appendChild(list);
     }
 
