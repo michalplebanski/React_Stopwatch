@@ -103,7 +103,7 @@ class Stopwatch extends React.Component {
       			React.createElement('button', {onClick: () => this.stop()}, 'Stop'),
       			React.createElement('button', {onClick: () => this.reset()}, 'Reset'),
       			React.createElement('button', {onClick: () => this.results()}, 'Save'),
-      			React.createElement('button', {onClick: () => this.deleteList()}, 'Delete')
+      			React.createElement('button', {onClick: () => this.deleteList()}, 'Delete List')
     		),
     		React.createElement('div', {id: 'container', className: 'container'},
     			React.createElement('div', {id: 'stopwatch', className: 'stopwatch'}, this.format())
