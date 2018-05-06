@@ -24,9 +24,7 @@ class Stopwatch extends React.Component {
     }
 
     format() {
-        return `${this.pad0(this.state.times.minutes)}:${this.pad0(
-            this.state.times.seconds
-        )}:${this.pad0(Math.floor(this.state.times.miliseconds))}`;
+        return `${this.pad0(this.state.times.minutes)}:${this.pad0(this.state.times.seconds)}:${this.pad0(Math.floor(this.state.times.miliseconds))}`;
     }
 
     start() {
