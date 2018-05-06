@@ -1,4 +1,4 @@
-'use strict';
+"use strict";
 
 var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
 
@@ -13,10 +13,10 @@ function _inherits(subClass, superClass) { if (typeof superClass !== "function" 
 var Stopwatch = function (_React$Component) {
     _inherits(Stopwatch, _React$Component);
 
-    function Stopwatch(display) {
+    function Stopwatch(props) {
         _classCallCheck(this, Stopwatch);
 
-        var _this = _possibleConstructorReturn(this, (Stopwatch.__proto__ || Object.getPrototypeOf(Stopwatch)).call(this, display));
+        var _this = _possibleConstructorReturn(this, (Stopwatch.__proto__ || Object.getPrototypeOf(Stopwatch)).call(this, props));
 
         _this.state = {
             timeTable: [],
@@ -31,7 +31,7 @@ var Stopwatch = function (_React$Component) {
     }
 
     _createClass(Stopwatch, [{
-        key: 'reset',
+        key: "reset",
         value: function reset() {
             this.setState({
                 running: false,
@@ -43,12 +43,12 @@ var Stopwatch = function (_React$Component) {
             });
         }
     }, {
-        key: 'format',
-        value: function format(times) {
-            return this.pad0(this.state.times.minutes) + ':' + this.pad0(this.state.times.seconds) + ':' + this.pad0(Math.floor(this.state.times.miliseconds));
+        key: "format",
+        value: function format() {
+            return this.pad0(this.state.times.minutes) + ":" + this.pad0(this.state.times.seconds) + ":" + this.pad0(Math.floor(this.state.times.miliseconds));
         }
     }, {
-        key: 'start',
+        key: "start",
         value: function start() {
             var _this2 = this;
 
@@ -62,13 +62,13 @@ var Stopwatch = function (_React$Component) {
             }
         }
     }, {
-        key: 'step',
+        key: "step",
         value: function step() {
             if (!this.state.running) return;
             this.calculate();
         }
     }, {
-        key: 'calculate',
+        key: "calculate",
         value: function calculate() {
             if (!this.state.running) return;
             var miliseconds = this.state.times.miliseconds;
@@ -95,39 +95,44 @@ var Stopwatch = function (_React$Component) {
             });
         }
     }, {
-        key: 'stop',
+        key: "stop",
         value: function stop() {
-            this.state.running = false;
+            this.setState({
+                running: false
+            });
             clearInterval(this.watch);
         }
     }, {
-        key: 'deleteList',
+        key: "deleteList",
         value: function deleteList() {
-            this.state.timeTable = [];
-            document.getElementById('results').innerHTML = '';
+            this.setState({
+                timeTable: []
+            });
+            document.getElementById("results").innerHTML = "";
         }
     }, {
-        key: 'results',
+        key: "results",
         value: function results() {
             var time = this.format(this.times);
-            this.state.timeTable = [].concat(_toConsumableArray(this.state.timeTable), [time]);
-            var pos = this.state.timeTable.length - 1;
-            var res = document.getElementById('results');
-            var list = document.createElement('li');
+            this.setState({
+                timeTable: [].concat(_toConsumableArray(this.state.timeTable), [time])
+            });
+            var res = document.getElementById("results");
+            var list = document.createElement("li");
             list.innerText = time;
             res.appendChild(list);
         }
     }, {
-        key: 'pad0',
+        key: "pad0",
         value: function pad0(value) {
             var result = value.toString();
             if (result.length < 2) {
-                result = '0' + result;
+                result = "0" + result;
             }
             return result;
         }
     }, {
-        key: 'render',
+        key: "render",
         value: function render() {
             var _this3 = this;
 
@@ -149,4 +154,4 @@ var Stopwatch = function (_React$Component) {
 }(React.Component);
 
 var element = React.createElement(Stopwatch);
-ReactDOM.render(element, document.getElementById('app'));
+ReactDOM.render(element, document.getElementById("app"));

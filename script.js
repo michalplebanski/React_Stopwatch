@@ -1,7 +1,6 @@
 class Stopwatch extends React.Component {
-
-    constructor(display) {
-        super(display);
+    constructor(props) {
+        super(props);
         this.state = {
             timeTable: [],
             running: false,
@@ -9,7 +8,7 @@ class Stopwatch extends React.Component {
                 minutes: 0,
                 seconds: 0,
                 miliseconds: 0
-            },
+            }
         };
     }
 
@@ -20,12 +19,14 @@ class Stopwatch extends React.Component {
                 minutes: 0,
                 seconds: 0,
                 miliseconds: 0
-            },
+            }
         });
     }
 
-    format(times) {
-        return `${this.pad0(this.state.times.minutes)}:${this.pad0(this.state.times.seconds)}:${this.pad0(Math.floor(this.state.times.miliseconds))}`;
+    format() {
+        return `${this.pad0(this.state.times.minutes)}:${this.pad0(
+            this.state.times.seconds
+        )}:${this.pad0(Math.floor(this.state.times.miliseconds))}`;
     }
 
     start() {
@@ -65,25 +66,30 @@ class Stopwatch extends React.Component {
                 seconds,
                 miliseconds
             }
-        })
+        });
     }
 
     stop() {
-        this.state.running = false;
+        this.setState({
+            running: false
+        });
         clearInterval(this.watch);
     }
 
     deleteList() {
-        this.state.timeTable = [];
-        document.getElementById('results').innerHTML = '';
+        this.setState({
+            timeTable: []
+        });
+        document.getElementById("results").innerHTML = "";
     }
 
     results() {
         const time = this.format(this.times);
-        this.state.timeTable = [...this.state.timeTable, time];
-        const pos = this.state.timeTable.length - 1;
-        const res = document.getElementById('results');
-        const list = document.createElement('li');
+        this.setState({
+            timeTable: [...this.state.timeTable, time]
+        });
+        const res = document.getElementById("results");
+        const list = document.createElement("li");
         list.innerText = time;
         res.appendChild(list);
     }
@@ -91,27 +97,26 @@ class Stopwatch extends React.Component {
     pad0(value) {
         let result = value.toString();
         if (result.length < 2) {
-            result = '0' + result;
+            result = "0" + result;
         }
         return result;
     }
-
-	render() {
-		return React.createElement('div', {},
-			React.createElement('div', {className: 'nav'},
-      			React.createElement('button', {onClick: () => this.start()}, 'Start'),
-      			React.createElement('button', {onClick: () => this.stop()}, 'Stop'),
-      			React.createElement('button', {onClick: () => this.reset()}, 'Reset'),
-      			React.createElement('button', {onClick: () => this.results()}, 'Save'),
-      			React.createElement('button', {onClick: () => this.deleteList()}, 'Delete List')
-    		),
-    		React.createElement('div', {id: 'container', className: 'container'},
-    			React.createElement('div', {id: 'stopwatch', className: 'stopwatch'}, this.format())
-    		),
-    		React.createElement('ul', {id: 'results', className: 'results'})
-    	)
-  	}
+    render() {
+        return React.createElement('div', {},
+            React.createElement('div', {className: 'nav'},
+                React.createElement('button', {onClick: () => this.start()}, 'Start'),
+                React.createElement('button', {onClick: () => this.stop()}, 'Stop'),
+                React.createElement('button', {onClick: () => this.reset()}, 'Reset'),
+                React.createElement('button', {onClick: () => this.results()}, 'Save'),
+                React.createElement('button', {onClick: () => this.deleteList()}, 'Delete List')
+            ),
+            React.createElement('div', {id: 'container', className: 'container'},
+                React.createElement('div', {id: 'stopwatch', className: 'stopwatch'}, this.format())
+            ),
+            React.createElement('ul', {id: 'results', className: 'results'})
+        )
+    }
 }
 
 var element = React.createElement(Stopwatch);
-ReactDOM.render(element, document.getElementById('app'));
+ReactDOM.render(element, document.getElementById("app"));
